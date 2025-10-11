@@ -10,7 +10,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
 
-  const API_URL = "http://localhost:3000/api/todos";
+  const API_URL = "https://mern-task-backend-3s9d.onrender.com/api/todos";
 
   useEffect(() => {
     const updateDate = () => {
