@@ -26,27 +26,31 @@ const TodoList = ({ todos, toggleComplete, deleteTodo, updateTodo }) => {
             className="bg-white rounded-xl shadow-md p-4 border border-gray-100 hover:shadow-lg transition duration-200"
           >
             {editId === todo._id ? (
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2 w-full">
                 <input
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
                   className="flex-grow px-3 py-2 rounded-lg border border-gray-300 outline-none text-gray-800"
+                  placeholder="Edit task..."
                 />
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={() => {
-                    setEditId(null);
-                    setEditTitle("");
-                  }}
-                  className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
-                >
-                  Cancel
-                </button>
+
+                <div className="flex gap-2 sm:w-auto w-full">
+                  <button
+                    onClick={handleUpdate}
+                    className="flex-1 sm:flex-none bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditId(null);
+                      setEditTitle("");
+                    }}
+                    className="flex-1 sm:flex-none bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             ) : (
               <>
