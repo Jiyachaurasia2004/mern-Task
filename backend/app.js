@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(cors({
-    origin: "  http://localhost:5174", 
+    origin: "https://mern-task-frontend-3s9d.onrender.com", 
     credentials: true,
 }));
 
