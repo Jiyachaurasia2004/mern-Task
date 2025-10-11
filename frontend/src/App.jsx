@@ -7,7 +7,10 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const [currentDate, setCurrentDate] = useState("");
-  const API_URL = "https://mern-task-backend-r1ma.onrender.com/api/todos";
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  const API_URL = "http://localhost:3000/api/todos";
 
   useEffect(() => {
     const updateDate = () => {
@@ -30,7 +33,7 @@ function App() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await axios.get(API_URL);
+        const res = await axios.get(`${API_URL}?search=${searchTerm}`);
         setTodos(res.data);
       } catch (err) {
         console.error("Failed to fetch todos:", err);
@@ -55,6 +58,7 @@ function App() {
     try {
       await axios.delete(`${API_URL}/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
+      alert("Task deleted successfully");
     } catch (err) {
       console.error("Failed to delete todo:", err);
     }
@@ -82,12 +86,21 @@ function App() {
     }
   };
 
+  const filteredTodos = todos.filter((todo) => {
+    const matchesSearch = todo.title.toLowerCase().includes(searchTerm.toLowerCase());
+   
+    return matchesSearch;
+  });
+   
   return (
     <div className="min-h-screen  flex flex-col items-center p-6">
       <h1 className="text-4xl font-bold mb-2">Task Manager</h1>
-      <p className="text-sm text-gray-500 mb-2">{currentDate}</p>
+      <p className="text-sm text-gray-500 mb-2">{currentDate}</p> 
+      <input type="text" placeholder="search tasks..." className="rounded-full mt-3 bg-[#edeef0] p-1  border-none outline-none pl-4 text-base sm:text-lg text-black" value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
+        
+
       <TodoForm title={title} setTitle={setTitle} addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} toggleComplete={toggleComplete} updateTodo={updateTodo} />
+      <TodoList todos={filteredTodos} deleteTodo={deleteTodo} toggleComplete={toggleComplete} updateTodo={updateTodo} />
     </div>
   );
 }
