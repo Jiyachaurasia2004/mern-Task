@@ -9,7 +9,15 @@ module.exports.getTodos = async(req,res)=>{
     }
    
 };
-
+module.exports.searchTodos = async(req,res)=>{
+  try {
+    const {search} =req.query;
+    const todos = await Todo.find({title:{$regex:search,$options:'i'}});
+    res.status(200).json(todos);
+  } catch (error) {
+    res.status(500).json({message:"Error searching todos"},error);
+  }
+}
 module.exports.createTodo = async(req,res)=>{
     try {
          const {title} = req.body;
