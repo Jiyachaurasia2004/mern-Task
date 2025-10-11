@@ -98,7 +98,6 @@ function App() {
       <p className="text-sm text-gray-500 mb-2">{currentDate}</p> 
       <input type="text" placeholder="search tasks..." className="rounded-full mt-3 bg-[#edeef0] p-1  border-none outline-none pl-4 text-base sm:text-lg text-black" value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
         
-
       <TodoForm title={title} setTitle={setTitle} addTodo={addTodo} />
       <TodoList todos={filteredTodos} deleteTodo={deleteTodo} toggleComplete={toggleComplete} updateTodo={updateTodo} />
     </div>
