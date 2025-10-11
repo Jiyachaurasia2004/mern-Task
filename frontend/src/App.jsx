@@ -94,10 +94,10 @@ function App() {
    
   return (
     <div className="min-h-screen  flex flex-col items-center p-6">
-       <input type="text" placeholder="search tasks..." className=" rounded-full w-full mt-3 md:w-1/3 h-10 bg-[#edeef0] p-1  border-none outline-none pl-4 text-base sm:text-lg text-black" value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
-      <h1 className="text-4xl font-bold mt-8">Task Manager</h1>
+      <h1 className="text-4xl font-bold mt-3">Task Manager</h1>
       <p className="text-sm text-gray-500">{currentDate}</p> 
       <TodoForm title={title} setTitle={setTitle} addTodo={addTodo} />
+       <input type="text" placeholder="search tasks..." className=" rounded-full w-full mt-10 md:w-1/3 h-10 bg-[#edeef0] p-1  border-none outline-none pl-4 text-base sm:text-lg text-black" value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
       <TodoList todos={filteredTodos} deleteTodo={deleteTodo} toggleComplete={toggleComplete} updateTodo={updateTodo} />
     </div>
   );
