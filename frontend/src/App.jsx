@@ -7,7 +7,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const [currentDate, setCurrentDate] = useState("");
-  const API_URL = "http://localhost:3000/api/todos";
+  const API_URL = "https://mern-task-backend-r1ma.onrender.com/api/todos";
 
   useEffect(() => {
     const updateDate = () => {
